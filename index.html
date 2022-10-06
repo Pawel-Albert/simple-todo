@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <script defer src="app.js"></script>
+    <title>Simple Todo List</title>
+  </head>
+  <body>
+    <!-- Wraper-->
+    <main class="mainWraper">
+      <!-- Welcome -->
+      <section class="welcome">
+        <h2 class="title">
+          Hello there, <input type="text" id="name" placeholder="name" />
+        </h2>
+      </section>
+      <!-- Welcome End-->
+
+      <!-- Todo -->
+      <section class="createTodo">
+        <h3>Create new Todo</h3>
+        <form id="todoForm">
+          <h4>What's the next thing you will be doing?</h4>
+          <input
+            type="text"
+            id="subject"
+            name="subject"
+            placeholder="e.g. do some pushups"
+          />
+          <h4>Choose a category</h4>
+          <div class="options">
+            <label>
+              <input type="radio" name="cat" id="cat1" value="business" />
+              <span class="dot business"></span>
+              <div>Business</div>
+            </label>
+            <label>
+              <input type="radio" name="cat" id="cat1" value="private" />
+              <span class="dot private"></span>
+              <div>Private</div>
+            </label>
+          </div>
+          <input type="submit" value="Create todo" />
+        </form>
+      </section>
+      <!-- Todo End -->
+
+      <!-- Todo List -->
+      <section class="todoListWraper">
+        <h3>Todo List</h3>
+        <div id="todoList" class="listElement">
+          <div class="todoItem">
+            <label>
+              <input type="checkbox" />
+              <span class="dot business"> </span>
+            </label>
+            <div class="todoText">
+              <input type="text" readonly value="Do some pushups" />
+            </div>
+            <div class="actionButtons">
+              <button class="edit">Edit</button>
+              <button class="delete">Delete</button>
+            </div>
+          </div>
+        </div>
+
+        <div id="todoList" class="listElement">
+          <div class="todoItem">
+            <label>
+              <input type="checkbox" />
+              <span class="dot private"> </span>
+            </label>
+            <div class="todoText">
+              <input type="text" readonly value="Do some pushups" />
+            </div>
+            <div class="actionButtons">
+              <button class="edit">Edit</button>
+              <button class="delete">Delete</button>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- Todo List End -->
+    </main>
+    <!-- Wraper End -->
+  </body>
+</html>
