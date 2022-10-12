@@ -27,11 +27,11 @@ section {
 }
 
 h3 {
-  color: blue;
+  color: #002f29;
   margin-bottom: 0.5rem;
 }
 h4 {
-  color: red;
+  color: #00499c;
   margin-bottom: 0.5rem;
 }
 
@@ -46,7 +46,7 @@ h4 {
 
 .welcome .title,
 .welcome .title input {
-  color: blueviolet;
+  color: black;
   font-size: 1.5rem;
   font-weight: 700;
 }
@@ -126,7 +126,7 @@ input:checked ~ .dot::after {
 }
 
 .createTodo .options label div {
-  color: burlywood;
+  color: #002f29;
   margin-top: 1rem;
 }
 
@@ -138,7 +138,7 @@ input:checked ~ .dot::after {
   transition: 0.2s ease-in-out;
   background-color: #2b56cc;
   border-radius: 6px;
-  color: chartreuse;
+  color: white;
   box-shadow: 0px 0px 3px 1px #2b56cc;
 }
 .createTodo input[type="submit"]:hover {
@@ -197,4 +197,9 @@ input:checked ~ .dot::after {
 
 .todoItem .actionButtons .delete {
   background-color: red;
+}
+
+.todoItem.done .todoText input {
+  text-decoration: line-through;
+  color: darkgrey;
 }
