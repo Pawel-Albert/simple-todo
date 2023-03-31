@@ -1,25 +1,32 @@
 "use strict";
+
+// DOM Elements and Variables
 const nameInputField = document.getElementById("name");
 const freshTodoForm = document.getElementById("todoForm");
 const todoText = document.querySelector(".todoText input");
 const userName = localStorage.getItem("userName") || "";
-let todos = JSON.parse(localStorage.getItem("todos")) || [];
 const listElement = document.querySelector("#todoList");
-const checkBox = document.querySelector("input[type=checkbox]");
+let todos = JSON.parse(localStorage.getItem("todos")) || [];
 
+// Event Listeners
 nameInputField.value = userName;
-nameInputField.addEventListener("change", (event) => {
-  localStorage.setItem("userName", event.target.value);
-});
+nameInputField.addEventListener("change", onNameInputChange);
+freshTodoForm.addEventListener("submit", onFormSubmit);
+listElement.addEventListener("click", onListElementClick);
 
-freshTodoForm.addEventListener("submit", (event) => {
+// Functions
+function onNameInputChange(event) {
+  localStorage.setItem("userName", event.target.value);
+}
+
+function onFormSubmit(event) {
   event.preventDefault();
   const submit = document.querySelector("input[type = submit]");
   submit.value = "Create todo";
   const category = event.target.elements.cat.value;
   const subject = event.target.elements.subject.value;
 
-  if (category === "" && subject === "") {
+  if (category === "" && subject.trim() === "") {
     submit.value = "Write some text and choose category!!!";
     return;
   }
@@ -28,10 +35,11 @@ freshTodoForm.addEventListener("submit", (event) => {
     submit.value = "Choose category!";
     return;
   }
-  if (subject === "") {
+  if (subject.trim() === "") {
     submit.value = "Write some text!";
     return;
   }
+
   const todo = {
     subject: subject,
     category: category,
@@ -44,11 +52,22 @@ freshTodoForm.addEventListener("submit", (event) => {
   setTodos(todos);
   event.target.reset();
   renderTodos();
-});
+}
+
+function onListElementClick(e) {
+  if (e.target.type === "checkbox") {
+    markAsDone(e.target.value);
+  }
+}
 
 function getTodos() {
   return JSON.parse(localStorage.getItem("todos"));
 }
+
+function setTodos(todos) {
+  localStorage.setItem("todos", JSON.stringify(todos));
+}
+
 function markupTodos(data, index) {
   let readonly, editClass, editSaveText, textClass, completed;
 
@@ -84,6 +103,7 @@ function markupTodos(data, index) {
           </div>
 `;
 }
+
 function renderTodos() {
   const todos = getTodos();
   listElement.innerHTML = "";
@@ -119,11 +139,6 @@ function editTodo(thisIndex) {
   renderTodos();
 }
 
-listElement.addEventListener("click", (e) => {
-  if (e.target.type === "checkbox") {
-    markAsDone(e.target.value);
-  }
-});
 function markAsDone(value) {
   let taskIndex = value;
   todos = getTodos();
@@ -137,7 +152,6 @@ function markAsDone(value) {
   setTodos(todos);
   renderTodos();
 }
-function setTodos(todos) {
-  localStorage.setItem("todos", JSON.stringify(todos));
-}
+
+// Initial render
 renderTodos();
